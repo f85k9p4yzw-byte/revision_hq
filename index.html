@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Revision HQ">
+<link rel="manifest" href="manifest.json">
+<title>Revision HQ | Year 9</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c30;--panel2:#1b2740;--text:#f4f7ff;--muted:#a7b3cc;--line:#2a3753;--mint:#7ce7c5;--blue:#8bb8ff;--yellow:#ffd47a;--pink:#ff9bb2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172644 0,#0b1020 58%);color:var(--text);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+main{max-width:760px;margin:auto;padding:22px 16px 44px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);font-weight:800}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:99px}
+h1{font-size:clamp(29px,7vw,42px);line-height:1.08;margin:8px 0 8px;letter-spacing:-.04em}.sub{color:var(--muted);margin:0 0 22px}.hero{background:linear-gradient(135deg,#1a2c49,#162035);border:1px solid #304363;border-radius:24px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:160px;height:160px;border:28px solid #7ce7c51a;border-radius:50%;right:-52px;top:-58px}.hero small{color:var(--mint);font-weight:800;letter-spacing:.1em;text-transform:uppercase}.count{font-size:36px;font-weight:850;letter-spacing:-.04em;margin:7px 0 3px}.hero p{color:var(--muted);margin:0;max-width:440px}.hero-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1}
+button,.button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:750;cursor:pointer;background:var(--mint);color:#0b1820}.secondary{background:#26344f;color:var(--text);border:1px solid #3a4a69}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:var(--panel);border:1px solid var(--line);padding:15px;border-radius:17px;min-width:0}.stat .num{font-size:24px;font-weight:850;letter-spacing:-.04em}.stat .label{font-size:12px;color:var(--muted);margin-top:3px}.section{background:var(--panel);border:1px solid var(--line);border-radius:21px;padding:18px;margin-top:14px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}h2{font-size:18px;margin:0;letter-spacing:-.02em}.muted{color:var(--muted);font-size:13px}.dayrow{display:flex;gap:8px;overflow:auto;padding:2px 0 12px}.day{flex:1;min-width:64px;border:1px solid var(--line);background:#111a2c;color:var(--muted);border-radius:13px;padding:10px 7px;text-align:center}.day strong{display:block;color:var(--text);font-size:13px}.day.active{border-color:var(--mint);background:#193a3a;color:var(--mint)}.task{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0;padding-bottom:0}.task input{width:21px;height:21px;accent-color:var(--mint);flex-shrink:0;margin-top:2px}.task-title{font-weight:750}.task-desc{font-size:13px;color:var(--muted);margin-top:3px}.chip{display:inline-block;font-size:11px;font-weight:800;padding:4px 8px;border-radius:99px;background:#26344f;color:var(--blue);margin-top:6px}.progress{height:9px;background:#26334b;border-radius:99px;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mint),var(--blue));border-radius:99px;transition:width .2s}.formrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.formrow input,.formrow select{background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;font:inherit;min-width:0}.formrow input[type=date]{flex:1}.notice{font-size:12px;color:var(--muted);margin-top:10px}.subject-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.subject{border:1px solid var(--line);background:#10192b;border-radius:13px;padding:12px}.subject strong{display:block}.subject span{font-size:12px;color:var(--muted)}.footer{text-align:center;color:var(--muted);font-size:12px;padding:22px 0 0}.hidden{display:none!important}
+@media(max-width:420px){main{padding:17px 12px 34px}.grid{gap:7px}.stat{padding:12px}.stat .num{font-size:21px}.section{padding:15px}.hero{padding:18px}.subject-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<div class="top"><div class="brand">✦ Revision HQ</div><div class="tag">YEAR 9 · WINTER TESTS</div></div>
+<h1>Your next three weeks<br>start here.</h1><p class="sub">45 focused minutes a day. Small sessions, steady progress.</p>
+<section class="hero"><small>Test countdown</small><div class="count" id="countdown">21 days*</div><p id="countdownNote">Temporary estimate until you know your test date. You can update it any time.</p><div class="hero-tools"><button id="jumpToday">Today's revision</button><button class="secondary" id="notifyBtn">Enable reminder</button></div></section>
+<div class="grid">
+<div class="stat"><div class="num" id="doneStat">0/5</div><div class="label">Today's tasks</div></div>
+<div class="stat"><div class="num" id="streakStat">0 🔥</div><div class="label">Day streak</div></div>
+<div class="stat"><div class="num" id="totalStat">0%</div><div class="label">Today's progress</div></div>
+</div>
+<section class="section"><div class="section-head"><h2>Pick a day</h2><span class="muted" id="dateLabel"></span></div><div class="dayrow" id="dayrow"></div><div class="progress"><span id="progressBar"></span></div><div class="muted" id="progressText">A little progress still counts.</div></section>
+<section class="section" id="todaySection"><div class="section-head"><h2 id="planTitle">Today's 45 minutes</h2><span class="chip">17:00 start</span></div><div class="muted" style="margin-bottom:8px">Try 3 blocks of 12 minutes with short breaks, then a 3-minute recap.</div><div id="tasks"></div></section>
+<section class="section"><div class="section-head"><h2>Your subjects</h2><span class="muted">Rotate through all 5</span></div><div class="subject-grid">
+<div class="subject"><strong>🔢 Maths</strong><span>Worked examples + practice</span></div><div class="subject"><strong>📖 English</strong><span>Reading, vocabulary, writing</span></div><div class="subject"><strong>🧪 Science</strong><span>Recall, diagrams, questions</span></div><div class="subject"><strong>🏛️ History</strong><span>Timeline, causes, evidence</span></div><div class="subject"><strong>🌍 Geography</strong><span>Case studies, maps, key terms</span></div></div></section>
+<section class="section"><div class="section-head"><h2>Test date</h2><span class="muted">Update when school confirms</span></div><div class="formrow"><input type="date" id="testDate"><button id="saveDate">Save date</button><button class="secondary" id="clearDate">Clear</button></div><p class="notice">Until you set a date, the countdown uses a 21-day estimate. Your checked tasks and streak are saved on this device/browser.</p></section>
+<section class="section"><div class="section-head"><h2>Daily reminder</h2><span class="muted">5:00 pm default</span></div><div class="formrow"><label for="reminderTime" class="muted">Reminder time</label><input type="time" id="reminderTime" value="17:00"><button id="saveReminder">Save time</button></div><p class="notice" id="reminderNote">Reminder notifications work only where this app is hosted securely and notifications are supported. A browser cannot reliably send a notification while fully closed without a push service.</p></section>
+<div class="footer">Built for consistency, not cramming. Your plan can change when you get your school timetable.</div>
+</main>
+<script>
+const subjects=[
+ {name:"Maths",icon:"🔢",tasks:["Revise one class method and write a worked example","Complete 5 practice questions","Mark answers and note one mistake to fix"]},
+ {name:"English",icon:"📖",tasks:["Recall key terms or vocabulary","Plan one paragraph or short response","Improve it using evidence and precise wording"]},
+ {name:"Science",icon:"🧪",tasks:["Write what you remember without notes","Check notes and correct gaps","Answer 4 quick questions or label a diagram"]},
+ {name:"History",icon:"🏛️",tasks:["Review a topic timeline or key people","Explain one cause, event or consequence","Answer one question using evidence"]},
+ {name:"Geography",icon:"🌍",tasks:["Review key terms, a map or case study","Draw or label a simple diagram/map","Answer 3 recall questions"]}];
+const $=id=>document.getElementById(id);
+const todayKey=()=>new Date().toLocaleDateString('en-CA');
+const localDate=(d)=>{const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`};
+let selectedDate=localDate(new Date());
+let data={checks:{},testDate:"",reminderTime:"17:00",completedDays:[]};
+try{data={...data,...JSON.parse(localStorage.getItem("revisionHQData")||"{}")}}catch(e){}
+function save(){localStorage.setItem("revisionHQData",JSON.stringify(data))}
+function subjectForDate(date){const d=new Date(date+"T12:00:00");return subjects[(Math.floor(d.getTime()/86400000)+1)%subjects.length]}
+function dayTasks(date){const main=subjectForDate(date);const next=subjects[(subjects.indexOf(main)+2)%subjects.length];return [
+{title:main.tasks[0],desc:`${main.name} · 12 minutes`,subject:main.name},
+{title:main.tasks[1],desc:`${main.name} · 12 minutes`,subject:main.name},
+{title:next.tasks[0],desc:`${next.name} · 12 minutes`,subject:next.name},
+{title:"Quick recap: write 3 things you learned",desc:"All subjects · 3 minutes",subject:"Recap"},
+{title:"Set up tomorrow's books and materials",desc:"2 minutes · make starting easier",subject:"Routine"}
+]}
+function key(date,i){return date+"_"+i}
+function render(){
+ const d=new Date(selectedDate+"T12:00:00");$("dateLabel").textContent=d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+ $("planTitle").textContent=(selectedDate===localDate(new Date())?"Today's":"Daily")+" 45 minutes";
+ const row=$("dayrow");row.innerHTML="";for(let n=-2;n<=4;n++){const dt=new Date();dt.setDate(dt.getDate()+n);const ds=localDate(dt);const b=document.createElement("button");b.className="day"+(ds===selectedDate?" active":"");b.innerHTML=`<span>${dt.toLocaleDateString(undefined,{weekday:"short"})}</span><strong>${dt.getDate()}</strong>`;b.onclick=()=>{selectedDate=ds;render()};row.appendChild(b)}
+ const tasks=dayTasks(selectedDate),wrap=$("tasks");wrap.innerHTML="";let done=0;
+ tasks.forEach((t,i)=>{const checked=!!data.checks[key(selectedDate,i)];if(checked)done++;const el=document.createElement("label");el.className="task";el.innerHTML=`<input type="checkbox" ${checked?"checked":""}><div><div class="task-title">${t.title}</div><div class="task-desc">${t.desc}</div><span class="chip">${t.subject}</span></div>`;el.querySelector("input").onchange=e=>{data.checks[key(selectedDate,i)]=e.target.checked;updateStreak();save();render()};wrap.appendChild(el)});
+ $("doneStat").textContent=`${done}/${tasks.length}`;$("totalStat").textContent=Math.round(done/tasks.length*100)+"%";$("progressBar").style.width=(done/tasks.length*100)+"%";$("progressText").textContent=done===tasks.length?"Session complete. Nice work.":`${tasks.length-done} task${tasks.length-done===1?"":"s"} left for this day.`;
+ const dates=Object.keys(data.checks).filter(k=>data.checks[k]).map(k=>k.split("_")[0]);const unique=[...new Set(dates)].sort();$("streakStat").textContent=streak(unique)+" 🔥";
+ const td=data.testDate?new Date(data.testDate+"T23:59:59"):null; if(td){const days=Math.ceil((td-new Date())/86400000);$("countdown").textContent=days<0?"Test date passed":days===0?"Test day!":`${days} day${days===1?"":"s"}`;$("countdownNote").textContent="Countdown to your saved test date. Update it if school changes the date."; }else{$("countdown").textContent="21 days*";$("countdownNote").textContent="Temporary estimate until you know your test date. You can update it any time."}
+ $("testDate").value=data.testDate||"";$("reminderTime").value=data.reminderTime||"17:00";
+}
+function streak(unique){let n=0;let d=new Date();let ds=localDate(d);if(!unique.includes(ds)){d.setDate(d.getDate()-1);ds=localDate(d);if(!unique.includes(ds))return 0}while(unique.includes(ds)){n++;d.setDate(d.getDate()-1);ds=localDate(d)}return n}
+function updateStreak(){const today=localDate(new Date());const tasks=dayTasks(today);if(tasks.every((t,i)=>data.checks[key(today,i)])){if(!data.completedDays.includes(today))data.completedDays.push(today)}else data.completedDays=data.completedDays.filter(d=>d!==today)}
+$("saveDate").onclick=()=>{data.testDate=$("testDate").value;save();render()};$("clearDate").onclick=()=>{data.testDate="";save();render()};
+$("saveReminder").onclick=()=>{data.reminderTime=$("reminderTime").value||"17:00";save();$("reminderNote").textContent="Saved in this app. Keep the app open for its in-app reminder check; background notifications need a hosted push-notification setup.";scheduleCheck();render()};
+$("jumpToday").onclick=()=>{selectedDate=localDate(new Date());render();$("todaySection").scrollIntoView({behavior:"smooth"})};
+$("notifyBtn").onclick=async()=>{if(!("Notification"in window)){alert("Notifications are not supported in this browser. You can still use the timetable and a Calendar reminder.");return}try{const p=await Notification.requestPermission();if(p==="granted"){new Notification("Revision HQ",{body:"Your 45-minute revision session is ready when you are."});$("reminderNote").textContent="Notifications allowed. This basic version can notify while open, but cannot guarantee a reminder when fully closed."}else alert("Notifications were not enabled. You can change this in your browser settings.")}catch(e){alert("This preview cannot request notifications in its current location. Add it to your home screen from a secure hosted link.")}};
+function scheduleCheck(){if(!("Notification"in window)||Notification.permission!=="granted")return;const now=new Date(),parts=(data.reminderTime||"17:00").split(":").map(Number);if(now.getHours()===parts[0]&&now.getMinutes()===parts[1]){const k="lastReminderDate";if(localStorage.getItem(k)!==localDate(now)){new Notification("Revision HQ",{body:"It's revision time. Open your 45-minute plan."});localStorage.setItem(k,localDate(now))}}}
+if("serviceWorker"in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();setInterval(scheduleCheck,30000);
+</script></body></html>
